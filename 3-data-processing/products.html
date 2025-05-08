@@ -62,16 +62,62 @@
         console.log("---------------------")
         console.log("PART 1...")
 
+        // A
+        console.log(products.length);
 
+        // B
+        products.forEach(function(product){
+            console.log(product.name, product.price);
+        });
 
+        // C
+        var matchingProducts = products.filter(product => product.price < 50);
 
-
+        // D
+        console.log(matchingProducts.length);
 
         console.log("---------------------")
         console.log("PART 2...")
 
+        var container = document.getElementById("display-products");
 
+        products.forEach(function(product) {
+            var productDiv = document.createElement("div");
 
+            // Style enhancement for price < $10
+            if (product.price < 10) {
+                productDiv.style.backgroundColor = "#e0ffe0";
+                productDiv.style.border = "1px solid green";
+                productDiv.style.padding = "10px";
+                productDiv.style.marginBottom = "10px";
+            } else {
+                productDiv.style.border = "1px solid #ccc";
+                productDiv.style.padding = "10px";
+                productDiv.style.marginBottom = "10px";
+            }
+
+            var nameP = document.createElement("p");
+            nameP.textContent = "Name: " + product.name;
+            productDiv.appendChild(nameP);
+
+            var descP = document.createElement("p");
+            descP.textContent = "Description: " + product.description;
+            productDiv.appendChild(descP);
+
+            var priceP = document.createElement("p");
+            priceP.textContent = "Price: $" + product.price.toFixed(2);
+            productDiv.appendChild(priceP);
+
+            var img = document.createElement("img");
+            img.src = product.imageURL;
+            img.alt = product.name;
+            productDiv.appendChild(img);
+
+            var hr = document.createElement("hr");
+            productDiv.appendChild(hr);
+
+            container.appendChild(productDiv);
+        });
 
     </script>
 </body>
