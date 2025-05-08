@@ -58,6 +58,19 @@
         console.log("---------------------")
         console.log("PART 1...")
 
+        var initialBalance = 150000
+        var balance = initialBalance
+        var years = 0
+
+        while(balance < 1000000){ 
+            balance = balance * 1.08 // ACCUMULATE THE BALANCE
+            years = years + 1
+        }
+
+        console.log("INITIAL BALANCE:", formatUSD(initialBalance))
+        console.log("NUMBER OF YEARS:", years)
+        console.log("ENDING BALANCE:", formatUSD(balance))
+
 
 
 
@@ -66,6 +79,23 @@
         console.log("---------------------")
         console.log("PART 2...")
 
+        var rateGenerator = d3.randomNormal(0.08, 0.15) // mean=0.08, stddev=0.15
+
+        var initialBalance = 150000
+        var balance = initialBalance
+        var years = 0
+
+        while(balance < 1000000){
+            var rate = rateGenerator()
+            console.log(years, rate)
+            balance = balance * (1 + rate) // ACCUMULATE THE BALANCE
+            years = years + 1
+        }
+
+        console.log("INITIAL BALANCE:", formatUSD(initialBalance))
+        console.log("NUMBER OF YEARS:", years)
+        console.log("ENDING BALANCE:", formatUSD(balance))
+
 
 
 
@@ -73,6 +103,57 @@
 
         console.log("---------------------")
         console.log("PART 3...")
+
+        var inputInitial = document.createElement("input")
+        inputInitial.placeholder = "Initial Balance"
+        inputInitial.value = 150000
+
+        var inputTarget = document.createElement("input")
+        inputTarget.placeholder = "Target Balance"
+        inputTarget.value = 1000000
+
+        var inputMean = document.createElement("input")
+        inputMean.placeholder = "Mean"
+        inputMean.value = 0.08
+
+        var inputStddev = document.createElement("input")
+        inputStddev.placeholder = "Standard Deviation"
+        inputStddev.value = 0.15
+
+        var button = document.createElement("button")
+        button.textContent = "Run Simulation"
+
+        var resultDisplay = document.createElement("div")
+
+        document.body.appendChild(inputInitial)
+        document.body.appendChild(inputTarget)
+        document.body.appendChild(inputMean)
+        document.body.appendChild(inputStddev)
+        document.body.appendChild(button)
+        document.body.appendChild(resultDisplay)
+
+        button.addEventListener("click", function() {
+            var initial = parseFloat(inputInitial.value)
+            var target = parseFloat(inputTarget.value)
+            var mean = parseFloat(inputMean.value)
+            var stddev = parseFloat(inputStddev.value)
+
+            var rateGenerator = d3.randomNormal(mean, stddev)
+            var balance = initial
+            var years = 0
+
+            while(balance < target){
+                var rate = rateGenerator()
+                console.log(years, rate)
+                balance *= (1 + rate)
+                years++
+            }
+
+            resultDisplay.innerHTML = `
+                <p>NUMBER OF YEARS: ${years}</p>
+                <p>ENDING BALANCE: ${formatUSD(balance)}</p>
+            `
+        })
 
 
 
