@@ -100,17 +100,18 @@
                 console.log("---------------------")
                 console.log("PART 1...")
 
-
-
-
-
+                console.log("SYMBOL:", data.Symbol)
+                console.log("NAME:", data.Name)
+                console.log("WEBSITE:", data.Website)
+                console.log("DESCRIPTION:", data.Description)
 
                 console.log("---------------------")
                 console.log("PART 2...")
 
-
-
-
+                displayName.innerText = data.Name
+                displayDesc.innerText = data.Description
+                displayLink.innerText = data.Website
+                displayLink.href = data.Website
 
             }).catch(function(error) {
                 console.error("ERROR:", error)
