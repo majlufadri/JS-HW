@@ -88,6 +88,13 @@
 
 
 
+        // Get references to DOM elements
+        var inputSymbol = document.getElementById("input-symbol")
+        var displayName = document.getElementById("display-name")
+        var displayDesc = document.getElementById("display-description")
+        var displayLink = document.getElementById("display-link")
+        var lookupButton = document.getElementById("lookup")
+
         // FUNCTION DEFINITION
         function lookupCompany() {
             var symbol = inputSymbol.value
@@ -120,9 +127,9 @@
 
         // FUNCTION INVOCATIONS
         // invoke function when the page loads:
-        //lookupCompany()
+        lookupCompany()
         // invoke function when button is clicked:
-        //lookupButton.addEventListener("click", lookupCompany, false)
+        lookupButton.addEventListener("click", lookupCompany, false)
 
     </script>
 </body>
